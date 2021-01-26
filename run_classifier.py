@@ -198,7 +198,7 @@ class DataProcessor(object):
   def _read_tsv(cls, input_file, quotechar=None):
     """Reads a tab separated value file."""
     with tf.gfile.Open(input_file, "r") as f:
-      reader = csv.reader(f, delimiter="\t", quotechar=quotechar)
+      reader = csv.reader(f, delimiter=",", quotechar=quotechar)
       lines = []
       for line in reader:
         lines.append(line)
@@ -259,7 +259,7 @@ class SimProcessor(DataProcessor):
   # read tsv
   def get_train_examples(self, data_dir):
     """See base class."""
-    lines = self._read_tsv(os.path.join(data_dir, "train.tsv"))
+    lines = self._read_tsv(os.path.join(data_dir, "train.csv"))
     train_data = []
     for (i, line) in enumerate(lines):
       if i == 0:
